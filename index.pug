@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="./styles.css")
+    title Simple Calendar
+  body
+    div#container
+      #header
+        #monthNameDisplay
+        div
+          button#prevMonthBtn Prev
+          button#nextMonthBtn Next
+      #weekdays.week
+      #calendar.week
+
+    #newEventModal.calendarModal
+      div.modalContainer
+        h2#eventTitle Add New Event
+        p#eventDetails Event Details
+        input#eventTitleInput(type="text", placeholder="Event Title")
+        textarea#eventDetailsInput(name="details", placeholder="Event Description")
+        .actions
+          button#saveEventBtn.confirm Save Event
+          button#cancelEventBtn.cancel Cancel
+    #viewEventModal.calendarModal
+      div.modalContainer
+        h2#viewEventTitle {Event Title}
+        p#viewEventDate {Event Date}
+        p#viewEventDetails {Event Details}
+        .actions
+          button#editEventBtn.confirm Edit
+          button#deleteEventBtn.delete Delete
+          button#closeViewEventBtn.cancel Close
+    #modalBackDrop
+
+    script(defer, src="./main.js")
