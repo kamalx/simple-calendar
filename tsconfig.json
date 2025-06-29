@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "es2022"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
+}
