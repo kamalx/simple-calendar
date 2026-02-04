@@ -218,6 +218,10 @@ button#nextMonthBtn {
   }
 }
 
+#viewEventModal {
+  z-index: 999;
+}
+
 .modalContainer {
   position: relative;
   top: 0;

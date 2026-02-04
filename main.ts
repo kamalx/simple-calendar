@@ -23,6 +23,7 @@ const months = ['January', 'February', 'March',
 app_state.nav = 0;
 app_state.clicked = null;
 app_state.events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+console.table(app_state.events, ["date", "title", "details"]);
 
 function cleanup() {
   calendar.innerHTML = '';
@@ -46,7 +47,7 @@ function openModal(date: string) {
   // the current date.
   const DAY_EVENT_EXISTS = app_state.events.find((event: any) => event.date === app_state.clicked);
   if (DAY_EVENT_EXISTS) {
-    console.log(`Event exists for date: ${app_state.clicked}`);
+    console.log(`Event on date: ${app_state.clicked}`);
     // If an event exists for the clicked date...
     // for now, just close the modal and sheepishly look away
     const viewEventTitle = document.querySelector('#viewEventTitle') as HTMLHeadingElement;
@@ -62,7 +63,7 @@ function openModal(date: string) {
     newEventModal.style.display = 'block';
     eventTitle.innerText = `Add Event`;
     eventDetails.innerText = `Date: ${date}.`;
-    console.log('Modal opened');
+    // console.log('Modal opened');
   }
 
 }
@@ -73,7 +74,7 @@ function closeModal() {
   eventTitleInput.value = '';
   eventDetailsInput.value = '';
   app_state.clicked = null; // Reset clicked date
-  console.log('Modal closed');
+  // console.log('Modal closed');
   load()
 }
 
@@ -108,8 +109,23 @@ function deleteEvent(date: string) {
   if (eventIndex !== -1) {
     app_state.events.splice(eventIndex, 1);
     localStorage.setItem('events', JSON.stringify(app_state.events));
-    console.log(`Event on ${date} deleted.`);
+    // console.log(`Event on ${date} deleted.`);
     closeModal();
+  } else {
+    console.error(`No event found for date: ${date}`);
+    closeModal();
+  }
+}
+
+function editEvent(date: string) {
+  // Edit the event in localStorage
+  const eventIndex = app_state.events.findIndex((event: any) => event.date === date.trim());
+  if (eventIndex !== -1) {
+    const event = app_state.events[eventIndex];
+    eventTitleInput.value = event.title;
+    eventDetailsInput.value = event.details;
+    openModal(date);
+    newEventModal.style.display = 'block';
   } else {
     console.error(`No event found for date: ${date}`);
     closeModal();
@@ -178,7 +194,7 @@ function load() {
       let currentDay;
       daySquare.innerText = currentDay = `${i - paddingDays}`
 
-      console.log(`Current day: ${currentDay}, Date: ${_day}`)
+      // console.log(`Current day: ${currentDay}, Date: ${_day}`)
       if(currentDay.toString() === _day.toString() && app_state.nav === 0) {
         daySquare.id = 'today'
         daySquare.title = `Today: ${dateString}`; // Tooltip for today
@@ -186,7 +202,7 @@ function load() {
 
       const DAY_EVENT_EXISTS = app_state.events.find((event: any) => event.date === clickedDate);
       if (DAY_EVENT_EXISTS) {
-        console.log(`Event exists for date: ${clickedDate}`);
+        console.log(`Event on: ${clickedDate}`);
         const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
         eventDiv.innerText = DAY_EVENT_EXISTS.title; // Display the event title
@@ -198,7 +214,7 @@ function load() {
 
       daySquare.addEventListener('click', (e) => {
         app_state.clicked = clickedDate; // Store the clicked date in app_state
-        console.log(`Clicked date: ${clickedDate}`);
+        // console.log(`Clicked date: ${clickedDate}`);
         openModal(clickedDate);
       });
     } else {
@@ -245,7 +261,14 @@ function initButtons () {
 
   editEventBtn.addEventListener('click', () => {
     // Logic to edit the event
-    console.log('Edit button clicked, coming soon :P');
+    console.log('Edit button clicked.');
+    if(app_state.clicked) {
+      editEvent(app_state.clicked);
+    } else {
+      console.error(`No event to edit, clicked date is null`);
+    }
+    // closeModal();
+    console.log('edtiting event...');
   });
 
   deleteEventBtn.addEventListener('click', () => {
