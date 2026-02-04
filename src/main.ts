@@ -8,7 +8,9 @@ const weekdaysContainer = document.querySelector('#weekdays') as HTMLDivElement;
 
 const newEventModal = document.querySelector('#newEventModal') as HTMLDivElement;
 const viewEventModal = document.querySelector('#viewEventModal') as HTMLDivElement;
+const aboutModal = document.querySelector('#aboutModal') as HTMLDivElement;
 const backdrop = document.querySelector('#modalBackDrop') as HTMLDivElement;
+const aboutButton = document.querySelector('#aboutButton') as HTMLButtonElement;
 
 const eventTitleInput = document.querySelector('#eventTitleInput') as HTMLInputElement;
 const eventDetailsInput = document.querySelector('#eventDetailsInput') as HTMLTextAreaElement;
@@ -29,6 +31,16 @@ function cleanup() {
   calendar.innerHTML = '';
   monthNameDisplay.innerHTML = '';
   weekdaysContainer.innerHTML = '';
+}
+
+function openAboutModal() {
+  aboutModal.style.display = 'block';
+  backdrop.style.display = 'block';
+}
+
+function closeAboutModal() {
+  aboutModal.style.display = 'none';
+  backdrop.style.display = 'none';
 }
 
 function openModal(date: string) {
@@ -229,6 +241,7 @@ function load() {
 function initButtons () {
   const prevMonthBtn = document.querySelector('#prevMonthBtn') as HTMLButtonElement;
   const nextMonthBtn = document.querySelector('#nextMonthBtn') as HTMLButtonElement;
+  const currentMonthBtn = document.querySelector('#currentMonth') as HTMLButtonElement;
 
   const saveEventBtn = document.querySelector('#saveEventBtn') as HTMLButtonElement;
   const cancelEventBtn = document.querySelector('#cancelEventBtn') as HTMLButtonElement;
@@ -236,6 +249,13 @@ function initButtons () {
   const editEventBtn = document.querySelector('#editEventBtn') as HTMLButtonElement;
   const deleteEventBtn = document.querySelector('#deleteEventBtn') as HTMLButtonElement;
   const closeViewEventBtn = document.querySelector('#closeViewEventBtn') as HTMLButtonElement;
+
+  const aboutButton = document.querySelector('#aboutButton') as HTMLButtonElement;
+  const closeAboutBtn = document.querySelector('#closeAbout') as HTMLButtonElement;
+
+  aboutButton.addEventListener('click', () => {
+    openAboutModal();
+  });
 
   prevMonthBtn.addEventListener('click', () => {
     app_state.nav--;
@@ -247,6 +267,12 @@ function initButtons () {
     app_state.nav++;
     load();
     console.log(`Next month button clicked, nav: ${app_state.nav}`);
+  });
+
+  currentMonthBtn.addEventListener('click', () => {
+    app_state.nav = 0;
+    load();
+    console.log(`Navigating to current month, nav: ${app_state.nav}`);
   });
 
   saveEventBtn.addEventListener('click', () => {
@@ -286,6 +312,18 @@ function initButtons () {
   closeViewEventBtn.addEventListener('click', () => {
     closeModal();
     console.log('Close view event button clicked, modal closed');
+  });
+
+  closeAboutBtn.addEventListener('click', () => {
+    closeAboutModal();
+    console.log('Close about button clicked, about modal closed');
+  });
+
+  // default click on the modalBackdrop
+  backdrop.addEventListener('click', () => {
+    closeModal();
+    closeAboutModal();
+    console.log('Backdrop clicked, modal closed');
   });
 
   return {prevMonthBtn, nextMonthBtn};
