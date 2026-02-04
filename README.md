@@ -1,8 +1,6 @@
-Simple Calendar
+# Simple Calendar
 
 using plain old javascript.
-
-From: https://www.youtube.com/watch?v=m9OSBJaQTlM
 
 The `tsconfig.json` file in this project is the bare minimum tsconfig
 that we needed for this setup to work.
@@ -15,5 +13,9 @@ This project uses:
 
 The build is stored in `./dist`
 
-At the moment, there is no bundler setup or anything here, the build is
-done by the vscode extension named `CompileHero`
+Bundler: [Parcel](https://parceljs.org/).
+See [package.json](./package.json) for more details.
+
+---
+
+This toy project was prompted by [this awesome video](https://www.youtube.com/watch?v=m9OSBJaQTlM).
