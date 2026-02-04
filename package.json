@@ -1,0 +1,22 @@
+{
+  "name": "simple-calendar",
+  "version": "0.1.0",
+  "description": "Simple calendar to make one entry per day",
+  "keywords": [
+    "calendar",
+    "simple"
+  ],
+  "license": "ISC",
+  "author": "https://kamal.morjal.com",
+  "scripts": {
+    "dev": "parcel src/index.pug",
+    "build": "parcel build src/index.pug",
+    "cachebust": "rm -rf .parcel-cache && rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-pug": "^2.16.4",
+    "@parcel/transformer-sass": "^2.16.4",
+    "parcel": "^2.16.4"
+  }
+}

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2022"
+    "module": "es2022",
+    "target": "es2017",
+    "lib": ["es2017", "dom"]
   },
   "exclude": [
     "node_modules",
