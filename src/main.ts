@@ -186,7 +186,7 @@ function load() {
 
   for (let i = 1; i <= days + paddingDays; i++) {
     let daySquare = document.createElement('div')
-    const clickedDate = `${i - paddingDays}/${_month + 1}/${_year}`; // Month is 0-indexed
+    const clickedDate = `${i - paddingDays}/${(_month + 1).toString().padStart(2, '0')}/${_year}`; // Month is 0-indexed
 
     daySquare.classList.add('day')
     if (i > paddingDays) {
