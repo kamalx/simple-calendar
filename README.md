@@ -2,8 +2,7 @@
 
 using plain old javascript.
 
-The `tsconfig.json` file in this project is the bare minimum tsconfig
-that we needed for this setup to work.
+- [![Netlify Status](https://api.netlify.com/api/v1/badges/26fb3249-b45a-419d-bc5f-5e994c24d5dc/deploy-status)](https://app.netlify.com/projects/lighthearted-figolla/deploys)
 
 This project uses:
 
