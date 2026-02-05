@@ -1,6 +1,6 @@
 doctype html
 html(lang="en")
-- var version = "v0.2.1"
+- var version = "v0.2.2"
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -45,20 +45,24 @@ html(lang="en")
       div.aboutInfo
         h3 Simple Calendar
         code #{version} – unstable alpha
-        p Made by&nbsp;
+        p.flex.flex-row.items-center.gap-xs Made by&nbsp;
           |
           a(href='https://kamal.morjal.com' target="_blank") kamalx
           |
           |<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="16" height="16" style="text-align: baseline">
           |  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
           |</svg>
+        p.footnote
+          a(href="https://github.com/kamalx/simple-calendar") View Sauce
+          |  •&nbsp;
+          a(href="https://github.com/kamalx/simple-calendar/issues") Complaints and feature requests
         hr
         div.footnote If you're using this and would like to share your thoughts, please write to me at
           div.pill kamal+about-cal@morjal.com
-        div.footnote NOTE:
-          ul
-            li Date formatting was improved in 0.2.0 (Feb 5, 2026). But, that also broke something for old notes. 🙈 You may not see your old notes after this date, however your data is still in your browser. We'll figure out a way to export all your data in a future version.
-            li Please don't use for important data storage as your data is not saved or backed up anywhere else except in this browser window.
+        div.footnote
+          p
+            strong Note:
+            |  0.2.0 improved date formatting but may hide older notes. 🙈 Your data is still safe in this browser. Export support coming soon. Please don't rely on this for important data.
         button#closeAbout ✕
     #modalBackDrop
     #allEvents
