@@ -1,6 +1,5 @@
 console.log(`main.js loaded`)
 import { version } from '../package.json';
-console.log(`version: ${version}`);
 
 let app_state: any = {}
 
@@ -28,7 +27,11 @@ const months = ['January', 'February', 'March',
 app_state.nav = 0;
 app_state.clicked = null;
 app_state.events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-console.table(app_state.events, ["date", "title", "details"]);
+
+function logAllData() {
+  console.info(`Simple Calendar v: ${version}`);
+  console.table(app_state.events, ["date", "title", "details"]);
+}
 
 function cleanup() {
   calendar.innerHTML = '';
@@ -39,6 +42,7 @@ function cleanup() {
 function openAboutModal() {
   aboutModal.style.display = 'block';
   backdrop.style.display = 'block';
+  logAllData()
 }
 
 function closeAboutModal() {
