@@ -1,5 +1,6 @@
 console.log(`main.js loaded`)
 import { version } from '../package.json';
+import sanitizeDate from './sanitizeDate';
 
 let app_state: any = {}
 
@@ -27,6 +28,14 @@ const months = ['January', 'February', 'March',
 app_state.nav = 0;
 app_state.clicked = null;
 app_state.events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+function sanitizeData() {
+  console.info(`Sanitizing all event data`);
+  app_state.events.forEach((event: any) => {
+    event.date = sanitizeDate(event.date);
+  });
+  console.info(`Sanitizing data complete`);
+}
 
 function logAllData() {
   console.info(`Simple Calendar v: ${version}`);
@@ -351,6 +360,7 @@ function populateVersion() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  sanitizeData();
   populateVersion();
   initButtons();
   load();
