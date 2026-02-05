@@ -1,4 +1,7 @@
 console.log(`main.js loaded`)
+import { version } from '../package.json';
+console.log(`version: ${version}`);
+
 let app_state: any = {}
 
 // Element cache
@@ -329,5 +332,22 @@ function initButtons () {
   return {prevMonthBtn, nextMonthBtn};
 }
 
-initButtons();
-load();
+function populateVersion() {
+  const versionEls = document.querySelectorAll('.version_string');
+  if(versionEls && versionEls.length > 0) {
+    for (const versionEl of versionEls) {
+      versionEl.textContent = versionEl.textContent.replace('#VV', version);
+    }
+  }
+
+  const title = document.title;
+  if (title) {
+    document.title = title + ' v' + version;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateVersion();
+  initButtons();
+  load();
+});

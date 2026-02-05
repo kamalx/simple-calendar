@@ -1,6 +1,5 @@
 doctype html
 html(lang="en")
-- var version = "v0.2.2"
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -20,7 +19,7 @@ html(lang="en")
       .notes
         p Only one note per day for now. More features planned for later.
         p
-          code#aboutButton #{version}
+          code#aboutButton.version_string #VV
 
 
     #newEventModal.calendarModal
@@ -44,7 +43,7 @@ html(lang="en")
     #aboutModal.calendarModal
       div.aboutInfo
         h3 Simple Calendar
-        code #{version} – unstable alpha
+        code.version_string #VV — unstable alpha
         p.flex.flex-row.items-center.gap-xs Made by&nbsp;
           |
           a(href='https://kamal.morjal.com' target="_blank") kamalx
@@ -67,4 +66,4 @@ html(lang="en")
     #modalBackDrop
     #allEvents
 
-    script(defer, src="./main.ts")
+    script(defer, type="module", src="./main.ts")
