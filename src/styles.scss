@@ -346,9 +346,14 @@ button#nextMonthBtn {
 .gap-xl { gap: 2rem; }
 .gap-xxl { gap: 3rem; }
 
-.footnote {
+.tiny {
   font-size: 0.7rem;
+}
+
+.footnote {
   color: #666;
+  pointer-events: none;
+  user-select: none;
 }
 
 .disabled {

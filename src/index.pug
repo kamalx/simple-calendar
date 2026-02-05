@@ -1,4 +1,11 @@
 doctype html
+// project urls
+-
+  const urls = {
+    netlify: "lighthearted-figolla.netlify.app",
+    main: "https://simpcal.designr.in",
+    gh: "https://github.com/kamalx/simple-calendar"
+  }
 html(lang="en")
   head
     meta(charset="UTF-8")
@@ -43,7 +50,10 @@ html(lang="en")
     #aboutModal.calendarModal
       div.aboutInfo
         h3 Simple Calendar
-        code.version_string #VV — unstable alpha
+        code.version_string #VV.alpha
+        br
+        a.tiny(href=urls.main) #{urls.main}
+        div.tiny #{urls.netlify}
         p
           img(src="https://api.netlify.com/api/v1/badges/26fb3249-b45a-419d-bc5f-5e994c24d5dc/deploy-status", alt="Deployment status")
         p.flex.flex-row.items-center.gap-xs Made by&nbsp;
@@ -54,17 +64,19 @@ html(lang="en")
           |  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
           |</svg>
 
-        p.footnote
-          a(href="https://github.com/kamalx/simple-calendar") View Sauce
+        p.tiny
+          a(href=urls.gh) View Sauce
           |  •&nbsp;
-          a(href="https://github.com/kamalx/simple-calendar/issues") Complaints and feature requests
+          a(href=urls.gh+"/issues") Complaints and feature requests
         hr
-        div.footnote If you're using this and would like to share your thoughts, please write to me at
+        div.tiny.footnote If you're using this and would like to share your thoughts, please write to me at
           div.pill kamal+about-cal@morjal.com
-        div.footnote
+        div.tiny.footnote
           p
             strong Note:
-            |  0.2.0 improved date formatting but may hide older notes. 🙈 Your data is still safe in this browser. Export support coming soon. Please don't rely on this for important data.
+            |  0.2.0 improved date formatting but may hide older notes.
+          p
+            | Your data is still safe in this browser. Export support coming soon. Please don't rely on this for important data.
         button#closeAbout ✕
     #modalBackDrop
     #allEvents
